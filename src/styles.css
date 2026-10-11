@@ -1,0 +1,42 @@
+import React from "react";
+
+export type LayoutShellProps = {
+  children: React.ReactNode;
+};
+
+const navItems = [
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "Agent Studio", href: "/godmode-agent-studio" },
+  { label: "VFS Explorer", href: "/vfs-explorer" },
+  { label: "Models", href: "/models" },
+  { label: "Audit Log", href: "/audit-log" },
+];
+
+export function LayoutShell({ children }: LayoutShellProps): JSX.Element {
+  return (
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.18),_transparent_25%),_linear-gradient(180deg,_#050816_0%,_#090d1a_100%)] text-zinc-100">
+      <header className="sticky top-0 z-30 border-b border-zinc-800/80 bg-zinc-950/70 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div>
+            <p className="gc-kicker">GODCORE OS</p>
+            <h1 className="text-lg font-semibold text-white">Agent Studio v7.0</h1>
+          </div>
+          <nav className="hidden items-center gap-2 md:flex">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className="gc-btn ghost">
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <button type="button" className="gc-btn primary">
+            Mission control
+          </button>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
+    </div>
+  );
+}
+
+export default LayoutShell;
